@@ -44,11 +44,10 @@ public class CoreFrMain implements Runnable {
         } else {
             curTop.add(new DefaultMutableTreeNode(file.getName()));
         }
-
     }
 
     @Override
     public void run() {
-        allList(null, new File("P:/"));
+        allList(null, new File("C:/Work"));
     }
 }
