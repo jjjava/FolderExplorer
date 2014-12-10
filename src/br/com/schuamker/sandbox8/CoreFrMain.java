@@ -28,10 +28,8 @@ public class CoreFrMain implements Runnable {
                 curTop = new DefaultMutableTreeNode(file.getName());
                 main.dynamicTree1.rootNode.add(curTop);
             } else {
-
-                //  DefaultMutableTreeNode aux = new DefaultMutableTreeNode(file.getName());
-                main.dynamicTree1.addObject(curTop, new DefaultMutableTreeNode(file.getName()));
-                curTop = null;
+              //  main.dynamicTree1.addObject(curTop, new DefaultMutableTreeNode(file.getName()), true);
+                 curTop.add(new DefaultMutableTreeNode(file.getName()));
                 curTop = new DefaultMutableTreeNode(file.getName());
             }
             File[] list = file.listFiles();
@@ -40,7 +38,7 @@ public class CoreFrMain implements Runnable {
             }
         } else {
             System.err.println(curTop.toString());
-            main.dynamicTree1.addObject(curTop, new DefaultMutableTreeNode(file.getName()));
+            curTop.add(new DefaultMutableTreeNode(file.getName()));
         }
     }
 
