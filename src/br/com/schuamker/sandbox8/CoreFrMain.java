@@ -1,9 +1,7 @@
-package br.com.schuamker.sandbox6;
+package br.com.schuamker.sandbox8;
 
 import java.io.File;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreePath;
 
 /**
  *
@@ -24,32 +22,30 @@ public class CoreFrMain implements Runnable {
     }
 
     private void allList(DefaultMutableTreeNode curTop, File file) {
-        System.err.println(file.getAbsolutePath());
+
         if (file.isDirectory()) {
-//            DefaultTreeModel model = (DefaultTreeModel) main.jTree1.getModel();
-//            DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
-            //model.reload(root);
-            // model.reload();
             if (curTop == null) {
                 curTop = new DefaultMutableTreeNode(file.getName());
-                main.root.add(curTop);
+                main.dynamicTree1.rootNode.add(curTop);
             } else {
-                DefaultMutableTreeNode aux = new DefaultMutableTreeNode(file.getName());
-                curTop.add(aux);
-                curTop = aux;
+
+                //  DefaultMutableTreeNode aux = new DefaultMutableTreeNode(file.getName());
+                main.dynamicTree1.addObject(curTop, new DefaultMutableTreeNode(file.getName()));
+                curTop = null;
+                curTop = new DefaultMutableTreeNode(file.getName());
             }
             File[] list = file.listFiles();
             for (File list1 : list) {
                 allList(curTop, list1);
             }
         } else {
-            curTop.add(new DefaultMutableTreeNode(file.getName()));
-            main.jTree1.scrollPathToVisible(new TreePath(new DefaultMutableTreeNode(file.getName()).getPath()));
+            System.err.println(curTop.toString());
+            main.dynamicTree1.addObject(curTop, new DefaultMutableTreeNode(file.getName()));
         }
     }
 
     @Override
     public void run() {
-        allList(null, new File("C:/Work"));
+        allList(null, new File("C:/Temp"));
     }
 }

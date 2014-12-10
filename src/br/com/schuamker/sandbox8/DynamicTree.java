@@ -1,4 +1,4 @@
-package br.com.schuamker.sandbox7;
+package br.com.schuamker.sandbox8;
 
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -19,14 +19,14 @@ import javax.swing.tree.TreeSelectionModel;
  */
 public class DynamicTree extends JPanel {
 
-    protected DefaultMutableTreeNode rootNode;
+    public DefaultMutableTreeNode rootNode;
     protected DefaultTreeModel treeModel;
     protected JTree tree;
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
 
     public DynamicTree() {
         super(new GridLayout(1, 0));
-        rootNode = new DefaultMutableTreeNode("Root Node");
+        rootNode = new DefaultMutableTreeNode("...");
         treeModel = new DefaultTreeModel(rootNode);
         tree = new JTree(treeModel);
         tree.setEditable(true);
@@ -88,7 +88,7 @@ public class DynamicTree extends JPanel {
             parent = rootNode;
         }
         // It is key to invoke this on the TreeModel, and NOT DefaultMutableTreeNode
-        treeModel.insertNodeInto(childNode, parent, parent.getChildCount());
+        treeModel.insertNodeInto(childNode, parent,parent.getChildCount() );
         // Make sure the user can see the lovely new node.
         if (shouldBeVisible) {
             tree.scrollPathToVisible(new TreePath(childNode.getPath()));
@@ -110,7 +110,6 @@ public class DynamicTree extends JPanel {
              */
             int index = e.getChildIndices()[0];
             node = (DefaultMutableTreeNode) (node.getChildAt(index));
-
             System.out.println("The user has finished editing the node.");
             System.out.println("New value: " + node.getUserObject());
         }
