@@ -2,6 +2,7 @@ package br.com.schuamker.sandbox6;
 
 import java.io.File;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -24,6 +25,10 @@ public class CoreFrMain implements Runnable {
     private void allList(DefaultMutableTreeNode curTop, File file) {
         System.err.println(file.getAbsolutePath());
         if (file.isDirectory()) {
+            DefaultTreeModel model = (DefaultTreeModel) main.jTree1.getModel();
+            DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+            //model.reload(root);
+            model.reload();
             if (curTop == null) {
                 curTop = new DefaultMutableTreeNode(file.getName());
                 main.root.add(curTop);
@@ -31,6 +36,7 @@ public class CoreFrMain implements Runnable {
                 DefaultMutableTreeNode aux = new DefaultMutableTreeNode(file.getName());
                 curTop.add(aux);
                 curTop = aux;
+
             }
             File[] list = file.listFiles();
             for (File list1 : list) {
@@ -39,8 +45,7 @@ public class CoreFrMain implements Runnable {
         } else {
             curTop.add(new DefaultMutableTreeNode(file.getName()));
         }
-       main.jTree1.removeAll();
-       main.jTree1 =  new javax.swing.JTree(main.root); 
+
     }
 
     @Override
