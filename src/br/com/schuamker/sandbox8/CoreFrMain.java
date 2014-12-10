@@ -22,23 +22,16 @@ public class CoreFrMain implements Runnable {
     }
 
     private void allList(DefaultMutableTreeNode curTop, File file) {
-
         if (file.isDirectory()) {
-            if (curTop == null) {
-                curTop = new DefaultMutableTreeNode(file.getName());
-                main.dynamicTree1.rootNode.add(curTop);
-            } else {
-              //  main.dynamicTree1.addObject(curTop, new DefaultMutableTreeNode(file.getName()), true);
-                 curTop.add(new DefaultMutableTreeNode(file.getName()));
-                curTop = new DefaultMutableTreeNode(file.getName());
-            }
+            main.dynamicTree1.addObject(curTop, new DefaultMutableTreeNode(file.getName()), true);
+            curTop = new DefaultMutableTreeNode(file.getName());
             File[] list = file.listFiles();
             for (File list1 : list) {
                 allList(curTop, list1);
             }
         } else {
-            System.err.println(curTop.toString());
-            curTop.add(new DefaultMutableTreeNode(file.getName()));
+            System.err.println(file.getName());
+            main.dynamicTree1.addObject(curTop, new DefaultMutableTreeNode(file.getName()), true);
         }
     }
 
