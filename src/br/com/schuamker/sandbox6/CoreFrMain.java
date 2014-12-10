@@ -36,7 +36,6 @@ public class CoreFrMain implements Runnable {
                 DefaultMutableTreeNode aux = new DefaultMutableTreeNode(file.getName());
                 curTop.add(aux);
                 curTop = aux;
-
             }
             File[] list = file.listFiles();
             for (File list1 : list) {
