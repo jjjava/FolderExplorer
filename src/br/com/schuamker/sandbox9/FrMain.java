@@ -25,7 +25,7 @@ public class FrMain extends javax.swing.JFrame {
         jTree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         jTree1.setShowsRootHandles(true);
         setLocationRelativeTo(null);
-        CoreFrMain core = new CoreFrMain(this);
+        CoreFrMain core = new CoreFrMain(this,1);
         core.start();
     }
 
